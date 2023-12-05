@@ -1,0 +1,29 @@
+{
+  "name": "graphql-request-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "homepage": "https://github.com/Voldemat/graphql-request-upload#readme",
+  "repository": "https://github.com/Voldemat/graphql-request-upload",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:ci": "npm run test",
+    "lint:ts": "tsc --noEmit",
+    "lint:ci": "npm run lint:ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.10",
+    "graphql-request": "^6.1.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
+  }
+}
