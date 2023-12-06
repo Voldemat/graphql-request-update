@@ -9,14 +9,14 @@ export function hasBlobValue (data: object): boolean  {
 }
 
 export function getFilesKeysAndPayload (
-    variables: Record<string, any>,
+    variables: Record<string, any> | Array<any>,
     initialPath: string = ''
-): [string[], Record<string, any>] {
+): [string[], Record<string, any> | Array<any>] {
     const filesKeys: string[] = []
-    const newObject: Record<string, any> = {}
+    const newObject: any = Array.isArray(variables) ? [] : {}
     for (const [key, value] of Object.entries(variables)) {
         if (value instanceof Blob) {
-            filesKeys.push(initialPath + key)
+            filesKeys.push(initialPath + key);
             newObject[key] = null
             continue
         }
@@ -24,11 +24,11 @@ export function getFilesKeysAndPayload (
             const [valueFilesKeys, valueObj] = getFilesKeysAndPayload(
                 value, initialPath + key + '.'
             )
-            filesKeys.push(...valueFilesKeys)
-            newObject[key] = valueObj
+            filesKeys.push(...valueFilesKeys);
+            newObject[key] = valueObj 
             continue
         }
-        newObject[key] = value
+        newObject[key] = value 
     }
 
     return [filesKeys, newObject]

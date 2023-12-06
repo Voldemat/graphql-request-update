@@ -25,4 +25,16 @@ describe('getFilesKeysAndPayload', () => {
         expect(filesKeys).toEqual(['c'])
         expect(obj).toStrictEqual({ a: 1, b: 2, c: null })
     })
+
+    it('Should replace array of files with array of nulls', () => {
+        const variables = {
+            files: [
+                new File([], ''),
+                new File([], '')
+            ]
+        }
+        const [filesKeys, obj] = getFilesKeysAndPayload(variables)
+        expect(filesKeys).toEqual(['files.0', 'files.1'])
+        expect(obj).toStrictEqual({ files: [null, null]})
+    })
 })
